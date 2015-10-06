@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1444153341703
+Build-Jdk: 1.8.0_31
+Built-By: danecek
+Bundle-Activator: org.lib.model.Activator
+Bundle-ManifestVersion: 2
+Bundle-Name: model
+Bundle-SymbolicName: org.lib.model
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Import-Package: org.osgi.framework;version="[1.8,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.5))"
+Tool: Bnd-3.0.0.201509101326
