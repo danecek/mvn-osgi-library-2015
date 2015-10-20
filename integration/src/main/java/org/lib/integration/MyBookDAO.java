@@ -5,15 +5,17 @@
  */
 package org.lib.integration;
 
+import java.util.Collection;
 import org.lib.model.MyBook;
 
 /**
  *
  * @author danecek
  */
-public class MyBookDAO {
+public interface MyBookDAO {
+
+    void create(MyBook book);
+
+    Collection<MyBook> getAll();
     
-    public void create(MyBook book) {
-        
-    }
 }

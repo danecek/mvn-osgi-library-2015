@@ -36,7 +36,8 @@
                 <configuration>
                     <instructions>
                         <Bundle-Activator>org.lib.integration.IntegrationActivator</Bundle-Activator>
-                        <Export-Package />
+                        <Export-Package >org.lib.integration</Export-Package>
+                        <Private-Package>org.lib.integration.*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>
