@@ -6,15 +6,16 @@
 package org.lib.business;
 
 import org.lib.integration.DAOFactory;
+import org.lib.model.MyBook;
 
 /**
  *
  * @author danecek
  */
 public class LibraryFacade {
-    
-    void create() {
-        DAOFactory.service().getMyBookDAO().create(null);
+
+    void create(MyBook book) {
+        DAOFactory.service().getMyBookDAO().create(book);
     }
-    
+
 }
