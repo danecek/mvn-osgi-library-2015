@@ -24,4 +24,9 @@ public abstract class DAOFactory {
 
     public abstract MyBookDAO getMyBookDAO();
 
+    public void cr() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 }
