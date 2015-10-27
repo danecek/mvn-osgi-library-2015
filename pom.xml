@@ -12,6 +12,21 @@
     </properties>
     <modules>
         <module>model</module>
-    <module>integration</module>
-  </modules>
+        <module>integration</module>
+        <module>business</module>
+    </modules>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>4.3.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>    
+    <dependencyManagement>
+        <dependencies>
+ 
+        </dependencies>
+    </dependencyManagement>
 </project>
