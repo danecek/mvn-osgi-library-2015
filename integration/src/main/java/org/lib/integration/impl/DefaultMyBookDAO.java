@@ -18,16 +18,14 @@ import org.lib.model.MyBookId;
  * @author danecek
  */
 public class DefaultMyBookDAO implements MyBookDAO {
-    
+
     Map<MyBookId, MyBook> books = new HashMap<>();
-    
+
     @Override
     public void create(MyBook book) {
-        
         books.put(book.getId(), book);
-        
     }
-    
+
     @Override
     public Collection<MyBook> getAll() {
         return new ArrayList<>(books.values());

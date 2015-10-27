@@ -12,11 +12,17 @@ import org.lib.integration.MyBookDAO;
  *
  * @author danecek
  */
-public class DefaultDAOFactory  extends DAOFactory{
+public class DefaultDAOFactory extends DAOFactory {
+
+    private DefaultMyBookDAO defaultMyBookDAO;
 
     @Override
     public MyBookDAO getMyBookDAO() {
-        return new DefaultMyBookDAO();
+        if (defaultMyBookDAO == null) {
+            defaultMyBookDAO = new DefaultMyBookDAO();
+        }
+        return defaultMyBookDAO;
+
     }
-    
+
 }

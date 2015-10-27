@@ -5,6 +5,8 @@
  */
 package org.lib.model;
 
+import java.util.Objects;
+
 /**
  *
  * @author danecek
@@ -40,6 +42,28 @@ public class MyBook {
      */
     public String getAuthor() {
         return author;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final MyBook other = (MyBook) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
     }
 
 }

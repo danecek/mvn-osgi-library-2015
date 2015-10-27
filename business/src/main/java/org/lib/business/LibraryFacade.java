@@ -5,6 +5,7 @@
  */
 package org.lib.business;
 
+import java.util.Collection;
 import org.lib.integration.DAOFactory;
 import org.lib.model.MyBook;
 
@@ -14,8 +15,17 @@ import org.lib.model.MyBook;
  */
 public class LibraryFacade {
 
-    void create(MyBook book) {
+    public static LibraryFacade instance = new LibraryFacade();
+
+    private LibraryFacade() {
+    }
+
+    public void createBook(MyBook book) {
         DAOFactory.service().getMyBookDAO().create(book);
+    }
+
+    public Collection<MyBook> getAllBooks() {
+        return DAOFactory.service().getMyBookDAO().getAll();
     }
 
 }
