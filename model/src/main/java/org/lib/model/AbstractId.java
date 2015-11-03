@@ -37,7 +37,7 @@ public abstract class AbstractId<T extends AbstractId> implements Comparable<T> 
 
     @Override
     public String toString() {
-        return "[" + id + ']';
+        return Integer.toString(id);
     }
 
     public int compareTo(T o) {

@@ -31,7 +31,8 @@
                 <configuration>
                     <instructions>
                         <Bundle-Activator>org.lib.business.BusinessActivator</Bundle-Activator>
-                        <Export-Package />
+                        <Export-Package >org.lib.business</Export-Package>
+                        <Private-Package>org.lib.business.*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>

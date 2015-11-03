@@ -21,6 +21,10 @@ public class DefaultMyBookDAO implements MyBookDAO {
 
     Map<MyBookId, MyBook> books = new HashMap<>();
 
+    public DefaultMyBookDAO() {
+        create(new MyBook(new MyBookId(1), "Macha", "Maj"));
+    }
+
     @Override
     public void create(MyBook book) {
         books.put(book.getId(), book);

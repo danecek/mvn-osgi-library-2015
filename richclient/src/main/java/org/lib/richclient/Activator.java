@@ -18,13 +18,13 @@ public class Activator implements BundleActivator {
 
             @Override
             public void run() {
-                new MainWindow();
+                MainWindow.instance.setContext(context);
             }
         });
     }
 
     public void stop(BundleContext context) throws Exception {
-        // TODO add deactivation code here
+        logger.info("");
     }
 
 }
