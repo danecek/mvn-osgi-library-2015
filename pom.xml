@@ -14,7 +14,8 @@
         <module>model</module>
         <module>integration</module>
         <module>business</module>
-    </modules>
+    <module>richclient</module>
+  </modules>
     
     <dependencies>
         <dependency>
