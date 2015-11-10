@@ -15,6 +15,8 @@ import org.lib.model.MyBook;
 public interface MyBookDAO {
 
     void create(MyBook book);
+    
+    void create(String title, String author);
 
     Collection<MyBook> getAll();
     

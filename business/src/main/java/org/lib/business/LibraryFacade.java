@@ -24,6 +24,10 @@ public class LibraryFacade {
         DAOFactory.service().getMyBookDAO().create(book);
     }
 
+    public void createBook(String title, String author) {
+        DAOFactory.service().getMyBookDAO().create(title, author);
+    }
+
     public Collection<MyBook> getAllBooks() {
         return DAOFactory.service().getMyBookDAO().getAll();
     }

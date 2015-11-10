@@ -14,7 +14,7 @@ import javafx.scene.control.MenuBar;
 public class LibMenuBar extends MenuBar {
 
     public LibMenuBar() {
-        getMenus().addAll(new FilesMenu());
+        getMenus().addAll(new FilesMenu(), new BooksMenu());
     }
     
 }

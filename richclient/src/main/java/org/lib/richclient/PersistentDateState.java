@@ -5,17 +5,19 @@
  */
 package org.lib.richclient;
 
-import javafx.scene.control.Menu;
+import java.util.Observable;
 
 /**
  *
  * @author danecek
  */
-public class FilesMenu extends Menu {
+public class PersistentDateState extends Observable {
 
-    public FilesMenu() {
-        super("Files"); //
-        getItems().addAll(ExitAction.instance.genMenuItem());
+    public static PersistentDateState instance = new PersistentDateState();
+    
+    public void dateChanged() {
+        this.setChanged();
+        this.notifyObservers();
     }
 
 }

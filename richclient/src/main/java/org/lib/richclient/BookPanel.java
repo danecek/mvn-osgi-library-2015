@@ -6,6 +6,8 @@
 package org.lib.richclient;
 
 import java.util.Collection;
+import java.util.Observable;
+import java.util.Observer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -21,7 +23,7 @@ import org.lib.model.MyBookId;
  *
  * @author danecek
  */
-public class BookPanel extends TitledPane {
+public class BookPanel extends TitledPane implements Observer {
 
     ObservableList<MyBook> books = FXCollections.observableArrayList();
 
@@ -42,6 +44,7 @@ public class BookPanel extends TitledPane {
     public BookPanel() {
         super("Books", null);
         setContent(createTable());
+        PersistentDateState.instance.addObserver(this);
         refresh();
     }
 
@@ -49,6 +52,11 @@ public class BookPanel extends TitledPane {
         Collection<MyBook> allbooks = LibraryFacade.instance.getAllBooks();
         books.clear();
         books.addAll(allbooks);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        refresh();
     }
 
 }

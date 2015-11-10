@@ -5,13 +5,17 @@
  */
 package org.lib.richclient;
 
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
+import javafx.scene.control.Menu;
 
 /**
  *
  * @author danecek
  */
-public class LibDialog extends Dialog<ButtonType> {
-    
+public class BooksMenu extends Menu {
+
+    public BooksMenu() {
+        super("Books"); //
+        getItems().addAll(CreateBookAction.instance.genMenuItem());
+    }
+
 }
