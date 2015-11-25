@@ -15,7 +15,9 @@
         <module>integration</module>
         <module>business</module>
         <module>richclient</module>
-    </modules>
+    <module>derbyDB</module>
+    <module>utils</module>
+  </modules>
     
     <dependencies>
         <dependency>

@@ -6,10 +6,13 @@
 package org.lib.business;
 
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.lib.model.MyBook;
 import org.lib.model.MyBookId;
+import org.lib.utils.LibException;
 
 /**
  *
@@ -22,10 +25,14 @@ public class LibraryFacadeTest {
 
     @Test
     public void testSomeMethod() {
-        LibraryFacade.instance.createBook(new MyBook(new MyBookId(1), "Macha", "Maj"));
-        Collection<MyBook> books = LibraryFacade.instance.getAllBooks();
-        System.out.println(books);
-        assertTrue(books.contains(new MyBook(new MyBookId(1), "Macha", "Maj")));
+        try {
+            LibraryFacade.instance.createBook(new MyBook(new MyBookId(1), "Macha", "Maj"));
+            Collection<MyBook> books = LibraryFacade.instance.getAllBooks();
+            System.out.println(books);
+            assertTrue(books.contains(new MyBook(new MyBookId(1), "Macha", "Maj")));
+        } catch (LibException ex) {
+            Logger.getLogger(LibraryFacadeTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

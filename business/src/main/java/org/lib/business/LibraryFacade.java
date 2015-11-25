@@ -8,6 +8,7 @@ package org.lib.business;
 import java.util.Collection;
 import org.lib.integration.DAOFactory;
 import org.lib.model.MyBook;
+import org.lib.utils.LibException;
 
 /**
  *
@@ -20,15 +21,15 @@ public class LibraryFacade {
     private LibraryFacade() {
     }
 
-    public void createBook(MyBook book) {
+    public void createBook(MyBook book) throws LibException {
         DAOFactory.service().getMyBookDAO().create(book);
     }
 
-    public void createBook(String title, String author) {
+    public void createBook(String title, String author) throws LibException {
         DAOFactory.service().getMyBookDAO().create(title, author);
     }
 
-    public Collection<MyBook> getAllBooks() {
+    public Collection<MyBook> getAllBooks() throws LibException {
         return DAOFactory.service().getMyBookDAO().getAll();
     }
 

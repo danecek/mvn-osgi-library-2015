@@ -6,6 +6,7 @@
 package org.lib.integration;
 
 import org.lib.integration.impl.DefaultDAOFactory;
+import org.osgi.util.tracker.ServiceTracker;
 
 /**
  *
@@ -13,16 +14,23 @@ import org.lib.integration.impl.DefaultDAOFactory;
  */
 public abstract class DAOFactory {
 
-    private static DefaultDAOFactory instance;
+    private static DAOFactory instance;
+    private static ServiceTracker<DAOFactory, DAOFactory> st;
 
     public static DAOFactory service() {
         if (instance == null) {
-            instance = new DefaultDAOFactory();
+            instance = st.getService();
+            if (instance == null) {
+                instance = new DefaultDAOFactory();
+            }
         }
         return instance;
     }
 
-    public abstract MyBookDAO getMyBookDAO();
+    static void setSt(ServiceTracker<DAOFactory, DAOFactory> stp) {
+        st = stp;
+    }
 
+    public abstract MyBookDAO getMyBookDAO();
 
 }

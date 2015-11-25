@@ -8,44 +8,44 @@
     </parent>
 
     <groupId>org.lib</groupId>
-    <artifactId>integration</artifactId>
+    <artifactId>derbyDB</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>model</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.core</artifactId>
-            <version>6.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>utils</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
+    <name>derbyDB 2015</name>
+
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>3.0.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>org.lib.integration.IntegrationActivator</Bundle-Activator>
-                        <Export-Package >org.lib.integration</Export-Package>
-                        <Private-Package>org.lib.integration.*</Private-Package>
+                        <Bundle-Activator>org.lib.derbydb.DerbyDBActivator</Bundle-Activator>
+                        <Export-Package />
                     </instructions>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>integration</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.12.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.servicemix.bundles</groupId>
+            <artifactId>org.apache.servicemix.bundles.derby</artifactId>
+            <version>10.11.1.1_1</version>
+        </dependency>
+    </dependencies>
 </project>
