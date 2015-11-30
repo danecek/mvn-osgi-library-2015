@@ -6,9 +6,9 @@ import javafx.embed.swing.JFXPanel;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
-public class Activator implements BundleActivator {
+public class RichclientActivator implements BundleActivator {
 
-    static final Logger logger = Logger.getLogger(Activator.class.getName());
+    static final Logger logger = Logger.getLogger(RichclientActivator.class.getName());
 
     @Override
     public void start(BundleContext context) throws Exception {

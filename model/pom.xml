@@ -9,13 +9,21 @@
 
     <artifactId>model</artifactId>
     <packaging>bundle</packaging>
+    
+    <name>model 2015</name>
+    
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>utils</artifactId>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <!-- version>3.0.0</version -->
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
@@ -27,11 +35,5 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>utils</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
+
 </project>

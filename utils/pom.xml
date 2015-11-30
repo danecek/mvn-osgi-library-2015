@@ -7,9 +7,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>org.lib</groupId>
     <artifactId>utils</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
 
     <name>utils 2015</name>
@@ -19,12 +17,11 @@
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
-                <version>2.3.7</version>
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>org.lib.utils.Activator</Bundle-Activator>
-                        <Export-Package >org.lib.utils</Export-Package>
+                        <Bundle-Activator>org.lib.utils.UtilsActivator</Bundle-Activator>
+                        <Export-Package>org.lib.utils</Export-Package>
                         <Private-Package>org.lib.utils.*</Private-Package>
                     </instructions>
                 </configuration>

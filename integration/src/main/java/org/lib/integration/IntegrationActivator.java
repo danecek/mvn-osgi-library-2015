@@ -3,7 +3,6 @@ package org.lib.integration;
 import java.util.logging.Logger;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;
 
 public class IntegrationActivator implements BundleActivator {
@@ -21,7 +20,7 @@ public class IntegrationActivator implements BundleActivator {
 
     @Override
     public void stop(BundleContext context) throws Exception {
-        // TODO add deactivation code here
+        log.info("");
     }
 
 }
