@@ -25,30 +25,43 @@ import org.lib.utils.LibException;
  * @author danecek
  */
 public class BookPanel extends TitledPane implements Observer {
-    
+
+    /**
+     * @return the instance
+     */
+    public static BookPanel getInstance() {
+        if (instance == null) {
+            instance = new BookPanel();
+        }
+        return instance;
+    }
+
     ObservableList<MyBook> books = FXCollections.observableArrayList();
-    
+    private TableView<MyBook> table;
+
+    private static BookPanel instance;
+
     Node createTable() {
-        TableView<MyBook> table = new TableView<>();
-        
+        table = new TableView<>();
+
         TableColumn<MyBook, MyBookId> idCol = new TableColumn<>("Id");  // todo lok
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         TableColumn<MyBook, MyBookId> authorCol = new TableColumn<>("Author");  // todo lok
         authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
         TableColumn<MyBook, MyBookId> titleCol = new TableColumn<>("Title");  // todo lok
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        table.getColumns().addAll(idCol, authorCol, titleCol);
-        table.setItems(books);
-        return table;
+        getTable().getColumns().addAll(idCol, authorCol, titleCol);
+        getTable().setItems(books);
+        return getTable();
     }
-    
-    public BookPanel() {
+
+    private BookPanel() {
         super("Books", null);
         setContent(createTable());
         PersistentDateState.instance.addObserver(this);
         refresh();
     }
-    
+
     public void refresh() {
         try {
             Collection<MyBook> allbooks = LibraryFacade.instance.getAllBooks();
@@ -58,10 +71,17 @@ public class BookPanel extends TitledPane implements Observer {
             MyAlert.error(ex.toString());
         }
     }
-    
+
     @Override
     public void update(Observable o, Object arg) {
         refresh();
     }
-    
+
+    /**
+     * @return the table
+     */
+    public TableView<MyBook> getTable() {
+        return table;
+    }
+
 }

@@ -25,11 +25,13 @@ import org.lib.utils.LibException;
  */
 public class DerbyMyBookDAO implements MyBookDAO {
 
-    PreparedStatement getAllPS;
+    private PreparedStatement getAllPS;
+    private PreparedStatement createBookPS;
 
     public DerbyMyBookDAO(Connection conn) {
         try {
             getAllPS = conn.prepareStatement("SELECT * FROM BOOKS");
+            createBookPS = conn.prepareStatement("INSERT INTO BOOKS VALUES(DEFAULT, ?, ?)");
         } catch (SQLException ex) {
             Logger.getLogger(DerbyMyBookDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -41,8 +43,16 @@ public class DerbyMyBookDAO implements MyBookDAO {
     }
 
     @Override
-    public void create(String title, String author) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void create(String title, String author) throws LibException {
+        try {
+            createBookPS.setString(1, title);
+            createBookPS.setString(2, author);
+            createBookPS.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DerbyMyBookDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new LibException(ex);
+        }
+
     }
 
     @Override

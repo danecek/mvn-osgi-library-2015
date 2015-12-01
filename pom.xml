@@ -19,7 +19,8 @@
         <module>richclient</module>
         <module>derbyDB</module>
         <module>utils</module>
-    </modules>
+    <module>protocol</module>
+  </modules>
     
     <dependencies>
         <dependency>

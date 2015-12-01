@@ -5,21 +5,23 @@
  */
 package org.lib.richclient;
 
+import org.lib.utils.Messages;
+
 /**
  *
  * @author danecek
  */
 public class CreateBookAction extends AbstractLibAction {
-
+    
     public static CreateBookAction instance = new CreateBookAction();
-
+    
     private CreateBookAction() {
-        super("Create Book");
+        super(Messages.Create_Book.createMess());
     }
-
+    
     @Override
     public void execute() {
         new CreateBookDialog().execute();
     }
-
+    
 }

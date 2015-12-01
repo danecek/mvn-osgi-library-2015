@@ -6,8 +6,11 @@
 package org.lib.derbydb;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.derby.jdbc.EmbeddedDriver;
@@ -19,22 +22,35 @@ import org.lib.integration.MyBookDAO;
  * @author danecek
  */
 public class DerbyDBDAOFactory extends DAOFactory {
-
+    
     Connection conn;
-
+    static final Logger lg = Logger.getLogger(DerbyDBDAOFactory.class.getName());
+    
     public DerbyDBDAOFactory() {
         try {
             new EmbeddedDriver();
             String url = "jdbc:derby:" + System.getProperty("user.home") + "/libraryDB; create=true";
             conn = DriverManager.getConnection(url);
+            DatabaseMetaData dbmd = conn.getMetaData();
+            ResultSet rs = dbmd.getTables(null, null, "BOOKS", null);
+            if (!rs.next()) {
+                lg.info("CREATE TABLE BOOKS");
+                Statement stm = conn.createStatement();
+                stm.executeUpdate("CREATE TABLE BOOKS"
+                        + "(ID INT NOT NULL GENERATED ALWAYS AS IDENTITY,"
+                        + "TITLE   VARCHAR(50),"
+                        + "AUTHOR  VARCHAR(50),"
+                        + "PRIMARY KEY (ID))");
+                
+            }
         } catch (SQLException ex) {
-            Logger.getLogger(DerbyDBDAOFactory.class.getName()).log(Level.SEVERE, null, ex);
+            lg.log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @Override
     public MyBookDAO getMyBookDAO() {
         return new DerbyMyBookDAO(conn);
     }
-
+    
 }
