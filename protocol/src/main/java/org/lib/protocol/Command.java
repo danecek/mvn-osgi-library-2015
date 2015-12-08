@@ -6,6 +6,7 @@
 package org.lib.protocol;
 
 import org.lib.business.LibraryFacade;
+import org.lib.utils.LibException;
 
 /**
  *
@@ -13,6 +14,8 @@ import org.lib.business.LibraryFacade;
  */
 public abstract class Command {
     
-    abstract void execute(LibraryFacade f);
+    public static final String OK = "ok";
+    
+    abstract Object execute(LibraryFacade f) throws LibException;
     
 }

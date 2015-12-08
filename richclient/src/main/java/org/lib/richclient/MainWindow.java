@@ -5,6 +5,7 @@
  */
 package org.lib.richclient;
 
+import org.lib.richclient.impl.BookPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.EventHandler;
@@ -39,6 +40,8 @@ public class MainWindow extends Stage {
         // hide();
 
     }
+    
+private LibMenuBar libMenuBar;
 
     private MainWindow() {
         setTitle("Library");
@@ -49,7 +52,7 @@ public class MainWindow extends Stage {
                 stop();
             }
         });
-        VBox root = new VBox(new LibMenuBar(),
+        VBox root = new VBox(libMenuBar = new LibMenuBar(),
                  new SplitPane(BookPanel.getInstance()));
         Scene s = new Scene(root, 800, 600);
         setScene(s);
@@ -61,6 +64,13 @@ public class MainWindow extends Stage {
      */
     public void setContext(BundleContext context) {
         this.context = context;
+    }
+
+    /**
+     * @return the libMenuBar
+     */
+    public LibMenuBar getLibMenuBar() {
+        return libMenuBar;
     }
 
 }

@@ -5,6 +5,8 @@
  */
 package org.lib.richclient;
 
+import org.lib.richclient.impl.FilesMenu;
+import org.lib.richclient.impl.BooksMenu;
 import javafx.scene.control.MenuBar;
 
 /**

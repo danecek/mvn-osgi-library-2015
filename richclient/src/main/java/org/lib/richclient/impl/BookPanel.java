@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.richclient;
+package org.lib.richclient.impl;
 
 import java.util.Collection;
 import java.util.Observable;
@@ -18,6 +18,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.lib.business.LibraryFacade;
 import org.lib.model.MyBook;
 import org.lib.model.MyBookId;
+import org.lib.richclient.MyAlert;
+import org.lib.richclient.PersistentDateState;
 import org.lib.utils.LibException;
 
 /**
@@ -64,7 +66,7 @@ public class BookPanel extends TitledPane implements Observer {
 
     public void refresh() {
         try {
-            Collection<MyBook> allbooks = LibraryFacade.instance.getAllBooks();
+            Collection<MyBook> allbooks = LibraryFacade.getService().getAllBooks();
             books.clear();
             books.addAll(allbooks);
         } catch (LibException ex) {

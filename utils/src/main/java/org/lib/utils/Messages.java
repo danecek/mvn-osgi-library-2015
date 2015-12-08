@@ -15,6 +15,7 @@ import java.util.logging.Logger;
  * @author danecek
  */
 public enum Messages {
+    Connect, Connection,
     Create_Book, Delete_Book;
 
     public String createMess(Object... args) {

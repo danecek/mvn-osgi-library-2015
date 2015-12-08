@@ -20,6 +20,8 @@
         <module>derbyDB</module>
         <module>utils</module>
     <module>protocol</module>
+    <module>proxy</module>
+    <module>connection</module>
   </modules>
     
     <dependencies>

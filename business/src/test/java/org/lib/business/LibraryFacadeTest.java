@@ -26,8 +26,8 @@ public class LibraryFacadeTest {
     @Test
     public void testSomeMethod() {
         try {
-            LibraryFacade.instance.createBook(new MyBook(new MyBookId(1), "Macha", "Maj"));
-            Collection<MyBook> books = LibraryFacade.instance.getAllBooks();
+            LibraryFacade.getService().createBook(new MyBook(new MyBookId(1), "Macha", "Maj"));
+            Collection<MyBook> books = LibraryFacade.getService().getAllBooks();
             System.out.println(books);
             assertTrue(books.contains(new MyBook(new MyBookId(1), "Macha", "Maj")));
         } catch (LibException ex) {

@@ -20,7 +20,7 @@ import javafx.scene.text.Text;
  */
 public abstract class AbstractLibDialog extends Dialog<ButtonType> {
 
-    Text errorText = new Text();
+    protected Text errorText = new Text();
 
     public AbstractLibDialog(String title) {
         setTitle(title);

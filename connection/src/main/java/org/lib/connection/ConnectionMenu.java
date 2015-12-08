@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.richclient;
+package org.lib.connection;
 
 import javafx.scene.control.Menu;
+import org.lib.utils.Messages;
 
 /**
  *
  * @author danecek
  */
-public class BooksMenu extends Menu {
+public class ConnectionMenu extends Menu {
 
-    public BooksMenu() {
-        super("Books"); //
-        getItems().addAll(CreateBookAction.instance.genMenuItem());
+    public ConnectionMenu() {
+        super(Messages.Connection.createMess());
+        this.getItems().addAll(ConnectAction.instance.genMenuItem());
     }
 
 }

@@ -6,31 +6,37 @@
 package org.lib.business;
 
 import java.util.Collection;
-import org.lib.integration.DAOFactory;
 import org.lib.model.MyBook;
 import org.lib.utils.LibException;
+import org.osgi.util.tracker.ServiceTracker;
 
-/**
- *
- * @author danecek
- */
-public class LibraryFacade {
+public abstract class LibraryFacade {
 
-    public static LibraryFacade instance = new LibraryFacade();
+    private static LibraryFacade service;
+    private static ServiceTracker<LibraryFacade, LibraryFacade> st;
 
-    private LibraryFacade() {
+    public static LibraryFacade getService() {
+        if (service == null) {
+            service = st.getService();
+        } else {
+            if (service == null) {
+                service = new LibraryFacadeDefault();
+            }
+        }
+        return service;
     }
 
-    public void createBook(MyBook book) throws LibException {
-        DAOFactory.service().getMyBookDAO().create(book);
+    /**
+     * @param aSt the st to set
+     */
+    public static void setSt(ServiceTracker<LibraryFacade, LibraryFacade> aSt) {
+        st = aSt;
     }
 
-    public void createBook(String title, String author) throws LibException {
-        DAOFactory.service().getMyBookDAO().create(title, author);
-    }
+    public abstract void createBook(MyBook book) throws LibException;
 
-    public Collection<MyBook> getAllBooks() throws LibException {
-        return DAOFactory.service().getMyBookDAO().getAll();
-    }
+    public abstract void createBook(String title, String author) throws LibException;
+
+    public abstract Collection<MyBook> getAllBooks() throws LibException;
 
 }

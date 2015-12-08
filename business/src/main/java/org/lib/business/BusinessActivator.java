@@ -3,6 +3,7 @@ package org.lib.business;
 import java.util.logging.Logger;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTracker;
 
 public class BusinessActivator implements BundleActivator {
 
@@ -11,6 +12,10 @@ public class BusinessActivator implements BundleActivator {
     @Override
     public void start(BundleContext context) throws Exception {
         log.info("");
+        ServiceTracker<LibraryFacade, LibraryFacade> st
+                = new ServiceTracker<>(context, LibraryFacade.class, null);
+        st.open(); // !!!!
+        LibraryFacade.setSt(st);
     }
 
     @Override

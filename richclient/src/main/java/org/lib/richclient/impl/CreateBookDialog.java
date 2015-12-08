@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.richclient;
+package org.lib.richclient.impl;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +13,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import org.lib.business.LibraryFacade;
+import org.lib.richclient.AbstractLibDialog;
+import org.lib.richclient.MyAlert;
+import org.lib.richclient.PersistentDateState;
+import org.lib.richclient.ValidatedTextField;
 import org.lib.utils.LibException;
 
 public class CreateBookDialog extends AbstractLibDialog {
@@ -35,7 +39,7 @@ public class CreateBookDialog extends AbstractLibDialog {
     
     protected void ok() {
         try {
-            LibraryFacade.instance.createBook(title.getText(), author.getText());
+            LibraryFacade.getService().createBook(title.getText(), author.getText());
             PersistentDateState.instance.dateChanged();
         } catch (LibException ex) {
             Logger.getLogger(CreateBookDialog.class.getName()).log(Level.SEVERE, null, ex);

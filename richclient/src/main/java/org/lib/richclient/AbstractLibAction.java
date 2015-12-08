@@ -20,12 +20,12 @@ import javafx.scene.control.MenuItem;
  */
 public abstract class AbstractLibAction implements Observer {
 
-    interface Disable {
-
-        public void setDisable(boolean b);
-    }
+//    interface Disable {
+//
+//        public void setDisable(boolean b);
+//    }
     private String name;
-    Collection<Disable> items = new ArrayList<>();
+  //  Collection<Disable> items = new ArrayList<>();
 
     public AbstractLibAction(String name) {
         this.name = name;
@@ -34,7 +34,7 @@ public abstract class AbstractLibAction implements Observer {
 
     public MenuItem genMenuItem() {
         MenuItem mi = new MenuItem(name);
-        items.add((Disable) mi);
+     //   items.add((Disable) mi);
         mi.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -47,7 +47,7 @@ public abstract class AbstractLibAction implements Observer {
 
     public Button genButton() {
         Button mi = new Button(name);
-        items.add((Disable) mi);
+     //   items.add((Disable) mi);
         mi.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -65,9 +65,9 @@ public abstract class AbstractLibAction implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         boolean id = isDisable();
-        for (Disable item : items) {
-            item.setDisable(id);
-        }
+//        for (Disable item : items) {
+//            item.setDisable(id);
+//        }
     }
 
     public abstract void execute();

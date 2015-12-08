@@ -5,27 +5,25 @@
  */
 package org.lib.protocol;
 
+import java.util.Collection;
 import org.lib.business.LibraryFacade;
+import org.lib.model.MyBook;
 import org.lib.utils.LibException;
 
 /**
  *
  * @author danecek
  */
-public class CreateBook extends Command {
+public class GetAllBooks extends Command {
 
-    private final String title;
-    private final String author;
 
-    public CreateBook(String title, String author) {
-        this.title = title;
-        this.author = author;
+    public GetAllBooks() {
+
     }
 
     @Override
-    Object execute(LibraryFacade f) throws LibException {
-        f.createBook(title, author);
-        return OK;
+    Collection<MyBook> execute(LibraryFacade f) throws LibException {
+        return f.getAllBooks();
     }
 
 }

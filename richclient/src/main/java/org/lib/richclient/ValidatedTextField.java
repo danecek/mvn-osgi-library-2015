@@ -5,6 +5,7 @@
  */
 package org.lib.richclient;
 
+import org.lib.richclient.impl.CreateBookDialog;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -15,9 +16,9 @@ import javafx.scene.input.KeyEvent;
  */
 public class ValidatedTextField extends TextField {
 
-    CreateBookDialog createBookDialog;
+    AbstractLibDialog createBookDialog;
 
-    public ValidatedTextField(CreateBookDialog createBookDialog) {
+    public ValidatedTextField(AbstractLibDialog createBookDialog) {
         this.createBookDialog = createBookDialog;
         setOnKeyReleased(new EventHandler<KeyEvent>() {
 
