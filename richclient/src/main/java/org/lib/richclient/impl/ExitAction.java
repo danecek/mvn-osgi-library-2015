@@ -22,7 +22,7 @@ public class ExitAction extends AbstractLibAction {
 
     @Override
     public void execute() {
-        MainWindow.instance.stop();
+        MainWindow.getInstance().stop();
         //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

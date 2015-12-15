@@ -23,7 +23,8 @@
                 <configuration>
                     <instructions>
                         <Bundle-Activator>org.lib.connection.ConnectionActivator</Bundle-Activator>
-                        <Export-Package />
+                        <Export-Package >org.lib.connection</Export-Package>
+                        <Private-Package>org.lib.connection.*</Private-Package>
                     </instructions>
                 </configuration>
             </plugin>

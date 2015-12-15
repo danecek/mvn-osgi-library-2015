@@ -27,20 +27,29 @@ import org.osgi.framework.launch.Framework;
  */
 public class MainWindow extends Stage {
 
+    /**
+     * @return the instance
+     */
+    public static MainWindow getInstance() {
+        if (instance == null)
+            instance = new MainWindow();
+        return instance;
+    }
+
     private BundleContext context;
 
-    public static MainWindow instance;
+    private static MainWindow instance;
 
-    static {
-        new JFXPanel();
-        Platform.runLater(new Runnable() {
-
-            @Override
-            public void run() {
-                MainWindow.instance = new MainWindow();
-            }
-        });
-    }
+//    static {
+//        new JFXPanel();
+//        Platform.runLater(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                MainWindow.instance = new MainWindow();
+//            }
+//        });
+//    }
 
     public void stop() {
         Bundle sb = context.getBundle(0);

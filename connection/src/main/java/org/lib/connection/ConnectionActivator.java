@@ -1,6 +1,7 @@
 package org.lib.connection;
 
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import org.lib.richclient.MainWindow;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -12,7 +13,12 @@ public class ConnectionActivator implements BundleActivator {
     @Override
     public void start(BundleContext context) throws Exception {
         LOG.info("");
-        MainWindow.instance.getLibMenuBar().getMenus().add(new ConnectionMenu());
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                MainWindow.getInstance().getLibMenuBar().getMenus().add(new ConnectionMenu());
+            }
+        });
     }
 
     @Override
