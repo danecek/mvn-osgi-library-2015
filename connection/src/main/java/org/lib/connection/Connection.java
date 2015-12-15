@@ -37,6 +37,7 @@ public class Connection {
         try (ObjectOutputStream oos = this.oos;
                 ObjectInputStream ois = this.ois;
                 Socket s = this.s) {
+            this.s = null;
         } catch (IOException ex) {
             Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -59,4 +60,9 @@ public class Connection {
         }
 
     }
+
+    public boolean isConnected() {
+        return s != null;
+    }
+
 }

@@ -5,22 +5,13 @@
  */
 package org.lib.connection;
 
-import com.sun.corba.se.impl.protocol.giopmsgheaders.Message;
-import java.net.InetAddress;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import org.lib.business.LibraryFacade;
 import org.lib.richclient.AbstractLibDialog;
-import org.lib.richclient.MyAlert;
-import org.lib.richclient.PersistentDateState;
 import org.lib.richclient.ValidatedTextField;
-import org.lib.utils.LibException;
 import org.lib.utils.Messages;
 
 public class ConnectDialog extends AbstractLibDialog {
@@ -53,7 +44,6 @@ public class ConnectDialog extends AbstractLibDialog {
     public void validate() {
         boolean error = false;
 
-        
         getDialogPane().lookupButton(ButtonType.OK).setDisable(error);
 
     }

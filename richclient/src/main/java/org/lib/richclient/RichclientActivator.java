@@ -13,14 +13,14 @@ public class RichclientActivator implements BundleActivator {
     @Override
     public void start(BundleContext context) throws Exception {
         logger.info("");
-        new JFXPanel();
-        Platform.runLater(new Runnable() {
-
-            @Override
-            public void run() {
+//        new JFXPanel();
+//        Platform.runLater(new Runnable() {
+//
+//            @Override
+//            public void run() {
                 MainWindow.instance.setContext(context);
-            }
-        });
+//            }
+//        });
     }
 
     public void stop(BundleContext context) throws Exception {

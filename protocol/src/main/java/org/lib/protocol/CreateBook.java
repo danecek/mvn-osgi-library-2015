@@ -23,7 +23,7 @@ public class CreateBook extends Command {
     }
 
     @Override
-    Object execute(LibraryFacade f) throws LibException {
+    public Object execute(LibraryFacade f) throws LibException {
         f.createBook(title, author);
         return OK;
     }

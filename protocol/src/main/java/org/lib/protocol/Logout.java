@@ -12,10 +12,11 @@ import org.lib.utils.LibException;
  *
  * @author danecek
  */
-public abstract class Command {
-    
-    public static final String OK = "ok";
-    
-    public abstract Object execute(LibraryFacade f) throws LibException;
-    
+public class Logout extends Command {
+
+    @Override
+    public Object execute(LibraryFacade f) throws LibException {
+        throw new RuntimeException();
+    }
+
 }

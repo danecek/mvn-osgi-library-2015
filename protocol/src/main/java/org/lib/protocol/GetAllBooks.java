@@ -22,7 +22,7 @@ public class GetAllBooks extends Command {
     }
 
     @Override
-    Collection<MyBook> execute(LibraryFacade f) throws LibException {
+    public Collection<MyBook> execute(LibraryFacade f) throws LibException {
         return f.getAllBooks();
     }
 

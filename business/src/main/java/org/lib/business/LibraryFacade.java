@@ -18,7 +18,6 @@ public abstract class LibraryFacade {
     public static LibraryFacade getService() {
         if (service == null) {
             service = st.getService();
-        } else {
             if (service == null) {
                 service = new LibraryFacadeDefault();
             }
@@ -38,5 +37,7 @@ public abstract class LibraryFacade {
     public abstract void createBook(String title, String author) throws LibException;
 
     public abstract Collection<MyBook> getAllBooks() throws LibException;
+
+    public abstract boolean facadeAvailable();
 
 }

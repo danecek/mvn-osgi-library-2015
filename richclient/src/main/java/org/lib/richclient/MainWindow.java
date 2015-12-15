@@ -8,6 +8,8 @@ package org.lib.richclient;
 import org.lib.richclient.impl.BookPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
@@ -27,7 +29,18 @@ public class MainWindow extends Stage {
 
     private BundleContext context;
 
-    public static MainWindow instance = new MainWindow();
+    public static MainWindow instance;
+
+    static {
+        new JFXPanel();
+        Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+                MainWindow.instance = new MainWindow();
+            }
+        });
+    }
 
     public void stop() {
         Bundle sb = context.getBundle(0);
@@ -40,8 +53,8 @@ public class MainWindow extends Stage {
         // hide();
 
     }
-    
-private LibMenuBar libMenuBar;
+
+    private LibMenuBar libMenuBar;
 
     private MainWindow() {
         setTitle("Library");
@@ -53,7 +66,7 @@ private LibMenuBar libMenuBar;
             }
         });
         VBox root = new VBox(libMenuBar = new LibMenuBar(),
-                 new SplitPane(BookPanel.getInstance()));
+                new SplitPane(BookPanel.getInstance()));
         Scene s = new Scene(root, 800, 600);
         setScene(s);
         show();

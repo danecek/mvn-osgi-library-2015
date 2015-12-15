@@ -9,6 +9,7 @@ package org.lib.proxy;
 
 import java.util.Collection;
 import org.lib.business.LibraryFacade;
+import org.lib.connection.Connection;
 import org.lib.model.MyBook;
 import org.lib.protocol.CreateBook;
 import org.lib.protocol.GetAllBooks;
@@ -34,6 +35,11 @@ public class LibraryFacadeProxy extends LibraryFacade {
     @Override
     public Collection<MyBook> getAllBooks() throws LibException {
         return instance.send(new GetAllBooks());
+    }
+
+    @Override
+    public boolean facadeAvailable() {
+        return Connection.instance.isConnected();
     }
 
 }

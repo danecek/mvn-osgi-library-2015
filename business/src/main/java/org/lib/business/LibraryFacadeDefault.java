@@ -29,4 +29,9 @@ public class LibraryFacadeDefault extends LibraryFacade {
         return DAOFactory.service().getMyBookDAO().getAll();
     }
 
+    @Override
+    public boolean facadeAvailable() {
+        return true;
+    }
+
 }

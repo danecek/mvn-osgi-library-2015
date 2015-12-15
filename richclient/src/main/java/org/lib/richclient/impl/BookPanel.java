@@ -66,9 +66,11 @@ public class BookPanel extends TitledPane implements Observer {
 
     public void refresh() {
         try {
-            Collection<MyBook> allbooks = LibraryFacade.getService().getAllBooks();
-            books.clear();
-            books.addAll(allbooks);
+            if (LibraryFacade.getService().facadeAvailable()) {
+                Collection<MyBook> allbooks = LibraryFacade.getService().getAllBooks();
+                books.clear();
+                books.addAll(allbooks);
+            }
         } catch (LibException ex) {
             MyAlert.error(ex.toString());
         }
