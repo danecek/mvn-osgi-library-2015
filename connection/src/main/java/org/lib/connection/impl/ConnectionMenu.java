@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.connection;
+package org.lib.connection.impl;
 
+import org.lib.connection.impl.ConnectAction;
 import javafx.scene.control.Menu;
 import org.lib.utils.Messages;
 

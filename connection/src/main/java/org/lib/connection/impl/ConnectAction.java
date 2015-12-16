@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.lib.connection;
+package org.lib.connection.impl;
 
 import org.lib.richclient.AbstractLibAction;
 import org.lib.utils.Messages;

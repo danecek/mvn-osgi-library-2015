@@ -8,23 +8,24 @@ import org.osgi.framework.BundleContext;
 
 public class RichclientActivator implements BundleActivator {
 
-    static final Logger logger = Logger.getLogger(RichclientActivator.class.getName());
+    private static final Logger LOG = Logger.getLogger(RichclientActivator.class.getName());
 
     @Override
     public void start(BundleContext context) throws Exception {
-        logger.info("");
+        LOG.info("");
         new JFXPanel();
         Platform.runLater(new Runnable() {
 
             @Override
             public void run() {
-                MainWindow.getInstance().setContext(context);
+                MainWindow.instance.setContext(context);
             }
         });
     }
 
+    @Override
     public void stop(BundleContext context) throws Exception {
-        logger.info("");
+        LOG.info("");
     }
 
 }

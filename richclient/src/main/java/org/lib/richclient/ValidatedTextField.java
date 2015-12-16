@@ -5,7 +5,6 @@
  */
 package org.lib.richclient;
 
-import org.lib.richclient.impl.CreateBookDialog;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
@@ -16,12 +15,13 @@ import javafx.scene.input.KeyEvent;
  */
 public class ValidatedTextField extends TextField {
 
-    AbstractLibDialog createBookDialog;
-
     public ValidatedTextField(AbstractLibDialog createBookDialog) {
-        this.createBookDialog = createBookDialog;
-        setOnKeyReleased(new EventHandler<KeyEvent>() {
+        this(createBookDialog, "");
+    }
 
+    public ValidatedTextField(AbstractLibDialog createBookDialog, String text) {
+        super(text);
+        setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 createBookDialog.validate();

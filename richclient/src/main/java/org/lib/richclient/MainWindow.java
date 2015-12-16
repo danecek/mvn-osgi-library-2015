@@ -8,8 +8,6 @@ package org.lib.richclient;
 import org.lib.richclient.impl.BookPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
@@ -30,26 +28,16 @@ public class MainWindow extends Stage {
     /**
      * @return the instance
      */
-    public static MainWindow getInstance() {
-        if (instance == null)
-            instance = new MainWindow();
-        return instance;
-    }
+//    public static MainWindow getInstance() {
+////        if (instance == null) {
+////            instance = new MainWindow();
+////        }
+//        return instance;
+//    }
 
     private BundleContext context;
 
-    private static MainWindow instance;
-
-//    static {
-//        new JFXPanel();
-//        Platform.runLater(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                MainWindow.instance = new MainWindow();
-//            }
-//        });
-//    }
+    public static MainWindow instance = new MainWindow();
 
     public void stop() {
         Bundle sb = context.getBundle(0);

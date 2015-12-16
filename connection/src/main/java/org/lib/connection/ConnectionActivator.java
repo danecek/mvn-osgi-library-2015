@@ -2,6 +2,7 @@ package org.lib.connection;
 
 import java.util.logging.Logger;
 import javafx.application.Platform;
+import org.lib.connection.impl.ConnectionMenu;
 import org.lib.richclient.MainWindow;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -16,7 +17,7 @@ public class ConnectionActivator implements BundleActivator {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                MainWindow.getInstance().getLibMenuBar().getMenus().add(new ConnectionMenu());
+                MainWindow.instance.getLibMenuBar().getMenus().add(new ConnectionMenu());
             }
         });
     }
