@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.lib.business.LibraryFacade;
+import org.lib.model.MyBook;
 import org.lib.protocol.Command;
 import org.lib.protocol.Logout;
 import org.lib.utils.LibException;
@@ -21,19 +22,22 @@ import org.lib.utils.LibException;
  * @author danecek
  */
 public class ClientTask implements Runnable {
-    
+
     private static final Logger LOG = Logger.getLogger(ClientTask.class.getName());
-    
+
     private final ObjectInputStream ois;
     private final ObjectOutputStream oos;
     private final Socket s;
-    
+
+    Class[] clss = {MyBook.class};
+    // MyBook ClassNotFound workaround
+
     public ClientTask(Socket s) throws IOException {
         this.s = s;
         ois = new ObjectInputStream(s.getInputStream());
         oos = new ObjectOutputStream(s.getOutputStream());
     }
-    
+
     @Override
     public void run() {
         try (ObjectInputStream ois = this.ois;
@@ -58,7 +62,7 @@ public class ClientTask implements Runnable {
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(ClientTask.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
 }

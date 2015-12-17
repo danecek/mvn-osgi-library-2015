@@ -5,8 +5,9 @@
  */
 package org.lib.connection.impl;
 
+import org.lib.connection.Connection;
 import org.lib.richclient.AbstractLibAction;
-import org.lib.utils.Messages;
+import static org.lib.utils.Messages.*;
 
 /**
  *
@@ -17,12 +18,17 @@ public class ConnectAction extends AbstractLibAction {
     public static final ConnectAction instance = new ConnectAction();
 
     private ConnectAction() {
-        super(Messages.Connect.createMess());
+        super(Connect.createMess());
     }
 
     @Override
     public void execute() {
         new ConnectDialog().execute();
+    }
+
+    @Override
+    public boolean testDisable() {
+        return org.lib.connection.Connection.instance.isConnected();
     }
 
 }

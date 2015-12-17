@@ -15,8 +15,25 @@ import java.util.logging.Logger;
  * @author danecek
  */
 public enum Messages {
-    Connect, Connection,
-    Create_Book, Delete_Book;
+    Connect,
+    Connection,
+    Create_Book,
+    Delete_Books,
+    Library,
+    Disconnect,
+    Not_connected,
+    Exit,
+    Books,
+    Id,
+    Author,
+    Title,
+    Host,
+    Port,
+    Empty_title,
+    Empty_author,
+    Invalid_port,
+    Invalid_host,
+    Error;
 
     public String createMess(Object... args) {
         try {

@@ -6,16 +6,18 @@
 package org.lib.richclient.impl;
 
 import javafx.scene.control.Menu;
+import org.lib.utils.Messages;
 
 /**
  *
  * @author danecek
  */
-public class BooksMenu extends Menu {
+public class BookMenu extends Menu {
 
-    public BooksMenu() {
-        super("Books"); //
-        getItems().addAll(CreateBookAction.instance.genMenuItem());
+    public BookMenu() {
+        super(Messages.Books.createMess());
+        getItems().addAll(CreateBookAction.instance.genMenuItem(),
+                DeleteBooksAction.instance.genMenuItem());
     }
 
 }

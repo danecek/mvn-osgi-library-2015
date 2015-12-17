@@ -19,11 +19,11 @@
         <module>richclient</module>
         <module>derbyDB</module>
         <module>utils</module>
-    <module>protocol</module>
-    <module>proxy</module>
-    <module>connection</module>
-    <module>server</module>
-  </modules>
+        <module>protocol</module>
+        <module>proxy</module>
+        <module>connection</module>
+        <module>server</module>
+    </modules>
     
     <dependencies>
         <dependency>

@@ -6,16 +6,16 @@ import org.osgi.framework.BundleContext;
 
 public class ModelActivator implements BundleActivator {
 
-    static final Logger log = Logger.getLogger(ModelActivator.class.getName());
+    private static final Logger LOG = Logger.getLogger(ModelActivator.class.getName());
 
     @Override
     public void start(BundleContext context) throws Exception {
-        log.info("");
+        LOG.info("");
     }
 
     @Override
     public void stop(BundleContext context) throws Exception {
-        log.info("");
+        LOG.info("");
     }
 
 }

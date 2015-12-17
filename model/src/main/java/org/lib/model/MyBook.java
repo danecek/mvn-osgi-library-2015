@@ -5,17 +5,19 @@
  */
 package org.lib.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author danecek
  */
-public class MyBook {
+public class MyBook implements Serializable {
 
-    private final MyBookId id;
-    private final String title;
-    private final String author;
+    // static final long serialVersionUID = 42L;
+    private MyBookId id;
+    private String title;
+    private String author;
 
     public MyBook(MyBookId id, String title, String author) {
         this.id = id;
@@ -23,23 +25,17 @@ public class MyBook {
         this.author = author;
     }
 
-    /**
-     * @return the id
-     */
+    public MyBook() {
+    }
+
     public MyBookId getId() {
         return id;
     }
 
-    /**
-     * @return the title
-     */
     public String getTitle() {
         return title;
     }
 
-    /**
-     * @return the author
-     */
     public String getAuthor() {
         return author;
     }
@@ -49,6 +45,11 @@ public class MyBook {
         int hash = 7;
         hash = 59 * hash + Objects.hashCode(this.id);
         return hash;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + id + "] " + author + ": " + title;
     }
 
     @Override

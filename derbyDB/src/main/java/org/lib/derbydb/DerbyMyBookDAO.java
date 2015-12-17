@@ -27,19 +27,16 @@ public class DerbyMyBookDAO implements MyBookDAO {
 
     private PreparedStatement getAllPS;
     private PreparedStatement createBookPS;
+    private PreparedStatement deleteBookPS;
 
     public DerbyMyBookDAO(Connection conn) {
         try {
             getAllPS = conn.prepareStatement("SELECT * FROM BOOKS");
             createBookPS = conn.prepareStatement("INSERT INTO BOOKS VALUES(DEFAULT, ?, ?)");
+            createBookPS = conn.prepareStatement("DELETE  BOOKS VALUES(DEFAULT, ?, ?)");
         } catch (SQLException ex) {
             Logger.getLogger(DerbyMyBookDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    @Override
-    public void create(MyBook book) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -71,6 +68,16 @@ public class DerbyMyBookDAO implements MyBookDAO {
         }
         return books;
 
+    }
+
+    @Override
+    public void delete(MyBookId id) throws LibException {
+        try {
+            deleteBookPS.setInt(1, id.getId());
+        } catch (SQLException ex) {
+            Logger.getLogger(DerbyMyBookDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new LibException(ex);
+        }
     }
 
 }

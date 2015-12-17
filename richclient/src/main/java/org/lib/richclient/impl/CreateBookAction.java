@@ -5,6 +5,7 @@
  */
 package org.lib.richclient.impl;
 
+import org.lib.business.LibraryFacade;
 import org.lib.richclient.AbstractLibAction;
 import org.lib.utils.Messages;
 
@@ -13,16 +14,21 @@ import org.lib.utils.Messages;
  * @author danecek
  */
 public class CreateBookAction extends AbstractLibAction {
-    
+
     public static CreateBookAction instance = new CreateBookAction();
-    
+
     private CreateBookAction() {
         super(Messages.Create_Book.createMess());
     }
-    
+
     @Override
     public void execute() {
         new CreateBookDialog().execute();
     }
-    
+
+    @Override
+    public boolean testDisable() {
+       return !LibraryFacade.getService().isAvailable();
+    }
+
 }

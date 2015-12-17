@@ -20,15 +20,22 @@ public class ServerTask implements Runnable {
 
     ServerSocket ss;
     ExecutorService es;
+    private static final Logger LOG = Logger.getLogger(ServerTask.class.getName());
 
     public ServerTask(ExecutorService es) {
-        this.es = es;
+        try {
+            this.es = es;
+            ss = new ServerSocket(3333);
+        } catch (IOException ex) {
+            Logger.getLogger(ServerTask.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void run() {
         for (;;) {
             try {
+                LOG.info("waiting for client");
                 Socket s = ss.accept();
                 es.execute(new ClientTask(s));
             } catch (IOException ex) {

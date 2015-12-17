@@ -7,16 +7,17 @@ import org.osgi.framework.BundleContext;
 
 public class DerbyDBActivator implements BundleActivator {
     
-    static final Logger log = Logger.getLogger(DerbyDBActivator.class.getName());
+    private static final Logger LOG = Logger.getLogger(DerbyDBActivator.class.getName());
     
+    @Override
     public void start(BundleContext context) throws Exception {
-        log.info("");
+        LOG.info("");
         context.registerService(DAOFactory.class.getName(), new DerbyDBDAOFactory(), null);
     }
     
+    @Override
     public void stop(BundleContext context) throws Exception {
-        log.info("");
-        // TODO add deactivation code here
+        LOG.info("");
     }
     
 }

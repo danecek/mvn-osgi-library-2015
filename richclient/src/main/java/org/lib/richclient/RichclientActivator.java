@@ -19,6 +19,7 @@ public class RichclientActivator implements BundleActivator {
             @Override
             public void run() {
                 MainWindow.instance.setContext(context);
+                ActionsState.instance.dateChanged();
             }
         });
     }

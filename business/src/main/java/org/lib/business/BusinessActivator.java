@@ -7,11 +7,11 @@ import org.osgi.util.tracker.ServiceTracker;
 
 public class BusinessActivator implements BundleActivator {
 
-    static final Logger log = Logger.getLogger(BusinessActivator.class.getName());
+    private static final Logger LOG = Logger.getLogger(BusinessActivator.class.getName());
 
     @Override
     public void start(BundleContext context) throws Exception {
-        log.info("");
+        LOG.info("");
         ServiceTracker<LibraryFacade, LibraryFacade> st
                 = new ServiceTracker<>(context, LibraryFacade.class, null);
         st.open(); // !!!!
@@ -20,7 +20,7 @@ public class BusinessActivator implements BundleActivator {
 
     @Override
     public void stop(BundleContext context) throws Exception {
-        log.info("");
+        LOG.info("");
     }
 
 }

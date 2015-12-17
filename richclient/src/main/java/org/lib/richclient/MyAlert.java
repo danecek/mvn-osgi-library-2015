@@ -7,16 +7,12 @@ package org.lib.richclient;
 
 import javafx.scene.control.Alert;
 
-/**
- *
- * @author danecek
- */
 public class MyAlert {
-    
+
     public static void error(Exception ex) {
         error(ex.toString());
     }
-    
+
     public static void error(String mess) {
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setContentText(mess);

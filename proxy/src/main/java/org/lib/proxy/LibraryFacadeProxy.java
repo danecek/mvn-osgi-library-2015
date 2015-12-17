@@ -5,8 +5,7 @@
  */
 package org.lib.proxy;
 
-
-
+import org.lib.protocol.DeleteBooks;
 import java.util.Collection;
 import org.lib.business.LibraryFacade;
 import org.lib.connection.Connection;
@@ -15,17 +14,13 @@ import org.lib.protocol.CreateBook;
 import org.lib.protocol.GetAllBooks;
 import org.lib.utils.LibException;
 import static org.lib.connection.Connection.instance;
+import org.lib.model.MyBookId;
 
 /**
  *
  * @author danecek
  */
 public class LibraryFacadeProxy extends LibraryFacade {
-
-    @Override
-    public void createBook(MyBook book) throws LibException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public void createBook(String title, String author) throws LibException {
@@ -38,8 +33,13 @@ public class LibraryFacadeProxy extends LibraryFacade {
     }
 
     @Override
-    public boolean facadeAvailable() {
+    public boolean isAvailable() {
         return Connection.instance.isConnected();
+    }
+
+    @Override
+    public void deleteBooks(Collection<MyBook> books) throws LibException {
+        instance.send(new DeleteBooks(books));
     }
 
 }

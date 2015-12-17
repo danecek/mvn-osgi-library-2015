@@ -7,6 +7,7 @@ package org.lib.business;
 
 import java.util.Collection;
 import org.lib.model.MyBook;
+import org.lib.model.MyBookId;
 import org.lib.utils.LibException;
 import org.osgi.util.tracker.ServiceTracker;
 
@@ -32,12 +33,11 @@ public abstract class LibraryFacade {
         st = aSt;
     }
 
-    public abstract void createBook(MyBook book) throws LibException;
-
     public abstract void createBook(String title, String author) throws LibException;
 
     public abstract Collection<MyBook> getAllBooks() throws LibException;
 
-    public abstract boolean facadeAvailable();
+    public abstract boolean isAvailable();
 
+    public abstract void deleteBooks(Collection<MyBook> books) throws LibException;
 }

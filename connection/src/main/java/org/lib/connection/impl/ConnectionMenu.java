@@ -5,7 +5,6 @@
  */
 package org.lib.connection.impl;
 
-import org.lib.connection.impl.ConnectAction;
 import javafx.scene.control.Menu;
 import org.lib.utils.Messages;
 
@@ -17,7 +16,8 @@ public class ConnectionMenu extends Menu {
 
     public ConnectionMenu() {
         super(Messages.Connection.createMess());
-        this.getItems().addAll(ConnectAction.instance.genMenuItem());
+        this.getItems().addAll(ConnectAction.instance.genMenuItem(),
+                DisconnectAction.instance.genMenuItem());
     }
 
 }

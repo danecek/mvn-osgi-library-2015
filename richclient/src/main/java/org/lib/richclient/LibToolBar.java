@@ -5,18 +5,15 @@
  */
 package org.lib.richclient;
 
-import org.lib.richclient.impl.FilesMenu;
-import org.lib.richclient.impl.BookMenu;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.ToolBar;
 
 /**
  *
  * @author danecek
  */
-public class LibMenuBar extends MenuBar {
+public class LibToolBar extends ToolBar {
 
-    public LibMenuBar() {
-        getMenus().addAll(new FilesMenu(), new BookMenu());
+    public LibToolBar() {
     }
     
 }

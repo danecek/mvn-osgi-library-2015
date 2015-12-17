@@ -5,6 +5,7 @@
  */
 package org.lib.protocol;
 
+import java.io.Serializable;
 import org.lib.business.LibraryFacade;
 import org.lib.utils.LibException;
 
@@ -12,7 +13,7 @@ import org.lib.utils.LibException;
  *
  * @author danecek
  */
-public abstract class Command {
+public abstract class Command implements Serializable {
     
     public static final String OK = "ok";
     

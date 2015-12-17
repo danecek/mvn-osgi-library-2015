@@ -13,22 +13,13 @@ import java.util.Map;
 import org.lib.model.MyBook;
 import org.lib.model.MyBookId;
 
-/**
- *
- * @author danecek
- */
-public class DefaultMyBookDAO implements MyBookDAO {
+public final class DefaultMyBookDAO implements MyBookDAO {
 
     Map<MyBookId, MyBook> books = new HashMap<>();
-    private Integer counter=2;
+    private Integer counter = 2;
 
     public DefaultMyBookDAO() {
-        create(new MyBook(new MyBookId(1), "Macha", "Maj"));
-    }
-
-    @Override
-    public void create(MyBook book) {
-        books.put(book.getId(), book);
+        create("Macha", "Maj");
     }
 
     @Override
@@ -38,6 +29,12 @@ public class DefaultMyBookDAO implements MyBookDAO {
 
     @Override
     public void create(String title, String author) {
-        create(new MyBook(new MyBookId(counter++), title, author));
+        MyBook b = new MyBook(new MyBookId(counter++), title, author);
+        books.put(b.getId(), b);
+    }
+
+    @Override
+    public void delete(MyBookId id) {
+        books.remove(id);
     }
 }

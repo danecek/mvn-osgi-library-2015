@@ -8,12 +8,20 @@ package org.lib.richclient;
 import org.lib.richclient.impl.BookPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import org.lib.richclient.impl.BookMenu;
+import org.lib.richclient.impl.CreateBookAction;
+import org.lib.richclient.impl.DeleteBooksAction;
+import org.lib.richclient.impl.FilesMenu;
+import org.lib.utils.Messages;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
@@ -25,36 +33,25 @@ import org.osgi.framework.launch.Framework;
  */
 public class MainWindow extends Stage {
 
-    /**
-     * @return the instance
-     */
-//    public static MainWindow getInstance() {
-////        if (instance == null) {
-////            instance = new MainWindow();
-////        }
-//        return instance;
-//    }
+    public static MainWindow instance = new MainWindow();
 
     private BundleContext context;
-
-    public static MainWindow instance = new MainWindow();
+    private final MenuBar libMenuBar;
+    private final ToolBar libToolBar;
+    private final BookPanel bookPanel;
 
     public void stop() {
         Bundle sb = context.getBundle(0);
         Framework f = (Framework) sb;
         try {
-            f.stop();
+            f.stop(1000);
         } catch (BundleException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // hide();
-
     }
 
-    private LibMenuBar libMenuBar;
-
     private MainWindow() {
-        setTitle("Library");
+        setTitle(Messages.Library.createMess());
         setOnCloseRequest(new EventHandler<WindowEvent>() {
 
             @Override
@@ -62,8 +59,14 @@ public class MainWindow extends Stage {
                 stop();
             }
         });
-        VBox root = new VBox(libMenuBar = new LibMenuBar(),
-                new SplitPane(BookPanel.getInstance()));
+        libMenuBar = new MenuBar(new FilesMenu(), new BookMenu());
+        libToolBar = new ToolBar(
+                CreateBookAction.instance.genButton(),
+                DeleteBooksAction.instance.genButton()
+        );
+        bookPanel = new BookPanel();
+        VBox root = new VBox(libMenuBar, getLibToolBar(),
+                new SplitPane(bookPanel));
         Scene s = new Scene(root, 800, 600);
         setScene(s);
         show();
@@ -79,8 +82,26 @@ public class MainWindow extends Stage {
     /**
      * @return the libMenuBar
      */
-    public LibMenuBar getLibMenuBar() {
+    public MenuBar getLibMenuBar() {
         return libMenuBar;
+    }
+
+    /**
+     * @return the libToolBar
+     */
+    public ToolBar getLibToolBar() {
+        return libToolBar;
+    }
+
+    /**
+     * @return the bookPanel
+     */
+    public BookPanel getBookPanel() {
+        return bookPanel;
+    }
+
+    public void refresh() {
+
     }
 
 }

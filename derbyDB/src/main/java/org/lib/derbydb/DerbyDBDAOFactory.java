@@ -24,7 +24,7 @@ import org.lib.integration.MyBookDAO;
 public class DerbyDBDAOFactory extends DAOFactory {
     
     Connection conn;
-    static final Logger lg = Logger.getLogger(DerbyDBDAOFactory.class.getName());
+    private static final Logger LOG = Logger.getLogger(DerbyDBDAOFactory.class.getName());
     
     public DerbyDBDAOFactory() {
         try {
@@ -34,7 +34,7 @@ public class DerbyDBDAOFactory extends DAOFactory {
             DatabaseMetaData dbmd = conn.getMetaData();
             ResultSet rs = dbmd.getTables(null, null, "BOOKS", null);
             if (!rs.next()) {
-                lg.info("CREATE TABLE BOOKS");
+                LOG.info("CREATE TABLE BOOKS");
                 Statement stm = conn.createStatement();
                 stm.executeUpdate("CREATE TABLE BOOKS"
                         + "(ID INT NOT NULL GENERATED ALWAYS AS IDENTITY,"
@@ -44,7 +44,7 @@ public class DerbyDBDAOFactory extends DAOFactory {
                 
             }
         } catch (SQLException ex) {
-            lg.log(Level.SEVERE, null, ex);
+            LOG.log(Level.SEVERE, null, ex);
         }
     }
     

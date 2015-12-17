@@ -5,11 +5,14 @@
  */
 package org.lib.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author danecek
  */
-public abstract class AbstractId<T extends AbstractId> implements Comparable<T> {
+public abstract class AbstractId<T extends AbstractId> implements Comparable<T>,
+        Serializable {
 
     private final Integer id;
 

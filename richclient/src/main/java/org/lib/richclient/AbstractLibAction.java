@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
+import org.lib.richclient.AbstractLibAction.Disable;
 
 /**
  *
@@ -20,12 +21,27 @@ import javafx.scene.control.MenuItem;
  */
 public abstract class AbstractLibAction implements Observer {
 
-//    interface Disable {
-//
-//        public void setDisable(boolean b);
-//    }
-    private String name;
-  //  Collection<Disable> items = new ArrayList<>();
+    interface Disable {
+        public void setDisable(boolean b);
+    }
+
+    static class LibMenuItem extends MenuItem implements Disable {
+
+        private LibMenuItem(String name) {
+            super(name);
+        }
+
+    }
+
+    static class LibButton extends Button implements Disable {
+
+        private LibButton(String name) {
+            super(name);
+        }
+
+    }
+    private final String name;
+    private final Collection<Disable> items = new ArrayList<>();
 
     public AbstractLibAction(String name) {
         this.name = name;
@@ -33,8 +49,8 @@ public abstract class AbstractLibAction implements Observer {
     }
 
     public MenuItem genMenuItem() {
-        MenuItem mi = new MenuItem(name);
-     //   items.add((Disable) mi);
+        LibMenuItem mi = new LibMenuItem(name);
+        items.add(mi);
         mi.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -46,8 +62,8 @@ public abstract class AbstractLibAction implements Observer {
     }
 
     public Button genButton() {
-        Button mi = new Button(name);
-     //   items.add((Disable) mi);
+        LibButton mi = new LibButton(name);
+        items.add(mi);
         mi.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -58,16 +74,15 @@ public abstract class AbstractLibAction implements Observer {
         return mi;
     }
 
-    boolean isDisable() {
+    public boolean testDisable() {
         return false;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        boolean id = isDisable();
-//        for (Disable item : items) {
-//            item.setDisable(id);
-//        }
+        for (Disable item : items) {
+            item.setDisable(testDisable());
+        }
     }
 
     public abstract void execute();
