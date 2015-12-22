@@ -5,7 +5,6 @@
  */
 package org.lib.richclient.impl;
 
-import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Logger;
@@ -17,52 +16,46 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TitledPane;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.lib.business.LibraryFacade;
-import org.lib.model.MyBook;
-import org.lib.model.MyBookId;
+import org.lib.model.MyReader;
+import org.lib.model.MyReaderId;
 import org.lib.richclient.ActionsState;
-import org.lib.richclient.MyAlert;
 import org.lib.richclient.PersistentDateState;
-import org.lib.utils.LibException;
 import static org.lib.utils.Messages.*;
 
 /**
  *
  * @author danecek
  */
-public class BookPanel extends TitledPane implements Observer {
+public class ReaderPanel extends TitledPane implements Observer {
 
-    private static final Logger LOG = Logger.getLogger(BookPanel.class.getName());
+    private static final Logger LOG = Logger.getLogger(ReaderPanel.class.getName());
 
-    ObservableList<MyBook> books = FXCollections.observableArrayList();
-    private TableView<MyBook> table;
+    ObservableList<MyReader> books = FXCollections.observableArrayList();
+    private TableView<MyReader> table;
 
-    private TableView<MyBook> createTable() {
-        TableView<MyBook> table = new TableView<MyBook>();
-        TableColumn<MyBook, MyBookId> idCol
+    private TableView<MyReader> createTable() {
+        TableView<MyReader> table = new TableView<MyReader>();
+        TableColumn<MyReader, MyReaderId> idCol
                 = new TableColumn<>(Id.createMess());
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        TableColumn<MyBook, MyBookId> authorCol
-                = new TableColumn<>(Author.createMess());
-        authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
-        TableColumn<MyBook, MyBookId> titleCol
-                = new TableColumn<>(Title.createMess());
-        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        table.getColumns().addAll(idCol, authorCol, titleCol);
+        TableColumn<MyReader, MyReaderId> nameCol
+                = new TableColumn<>(Name.createMess());
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        table.getColumns().addAll(idCol, nameCol);
         table.setItems(books);
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         table.getSelectionModel().getSelectedItems().
-                addListener(new ListChangeListener<MyBook>() {
+                addListener(new ListChangeListener<MyReader>() {
                     @Override
-                    public void onChanged(ListChangeListener.Change<? extends MyBook> changed) {
+                    public void onChanged(ListChangeListener.Change<? extends MyReader> changed) {
                         ActionsState.instance.dateChanged();
                     }
                 });
         return table;
     }
 
-    public BookPanel() {
-        super(Books.createMess(), null);
+    public ReaderPanel() {
+        super(Readers.createMess(), null);
         table = createTable();
         setContent(table);
         PersistentDateState.instance.addObserver(this);
@@ -70,15 +63,15 @@ public class BookPanel extends TitledPane implements Observer {
     }
 
     public void refresh() {
-        try {
-            if (LibraryFacade.getService().isAvailable()) {
-                Collection<MyBook> allbooks = LibraryFacade.getService().getAllBooks();
-                books.clear();
-                books.addAll(allbooks);
-            }
-        } catch (LibException ex) {
-            MyAlert.error(ex.toString());
-        }
+//        try {
+//            if (LibraryFacade.getService().isAvailable()) {
+//     //           Collection<MyReader> allbooks = LibraryFacade.getService().getAllBooks();
+//                books.clear();
+//       //         books.addAll(allbooks);
+//            }
+//        } catch (LibException ex) {
+//            MyAlert.error(ex.toString());
+//        }
     }
 
     @Override
@@ -86,11 +79,11 @@ public class BookPanel extends TitledPane implements Observer {
         refresh();
     }
 
-    public TableView<MyBook> getTable() {
+    public TableView<MyReader> getTable() {
         return table;
     }
 
-    ObservableList<MyBook> selectedBooks() {
+    ObservableList<MyReader> selectedBooks() {
         return table.getSelectionModel().getSelectedItems();
     }
 

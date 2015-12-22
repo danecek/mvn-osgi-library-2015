@@ -12,19 +12,19 @@ import java.util.Objects;
  *
  * @author danecek
  */
-public class MyBook implements Serializable {
+public class MyReader implements Serializable {
 
     public MyBookId id;
     public String title;
     public String author;
 
-    public MyBook(MyBookId id, String title, String author) {
+    public MyReader(MyBookId id, String title, String author) {
         this.id = id;
         this.title = title;
         this.author = author;
     }
 
-    public MyBook() {
+    public MyReader() {
     }
 
     public MyBookId getId() {
@@ -59,7 +59,7 @@ public class MyBook implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final MyBook other = (MyBook) obj;
+        final MyReader other = (MyReader) obj;
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }

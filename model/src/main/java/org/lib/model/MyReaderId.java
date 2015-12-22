@@ -9,12 +9,12 @@ package org.lib.model;
  *
  * @author danecek
  */
-public class MyBookId extends AbstractId<MyBookId> {
+public class MyReaderId extends AbstractId<MyReaderId> {
 
-    public MyBookId() {
+    public MyReaderId() {
     }
 
-    public MyBookId(Integer id) {
+    public MyReaderId(Integer id) {
         super(id);
     }
 

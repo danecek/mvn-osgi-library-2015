@@ -9,11 +9,13 @@ public class UtilsActivator implements BundleActivator {
 
     Logger log = Logger.getLogger(UtilsActivator.class.getName());
 
+    @Override
     public void start(BundleContext context) throws Exception {
         log.info("");
-        Locale.setDefault(Locale.GERMAN);
+//        Locale.setDefault(new Locale("cs"));
     }
 
+    @Override
     public void stop(BundleContext context) throws Exception {
         log.info("");
     }
