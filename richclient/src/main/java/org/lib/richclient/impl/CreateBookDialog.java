@@ -21,14 +21,14 @@ import org.lib.utils.LibException;
 import static org.lib.utils.Messages.*;
 
 public class CreateBookDialog extends AbstractLibDialog {
-    
+
     private ValidatedTextField title;
     private ValidatedTextField author;
-    
+
     public CreateBookDialog() {
         super(Create_Book.createMess());
     }
-    
+
     @Override
     protected Node createContent() {
         GridPane gp = new GridPane();
@@ -41,7 +41,8 @@ public class CreateBookDialog extends AbstractLibDialog {
         gp.add(author = new ValidatedTextField(this), 1, 1);
         return gp;
     }
-    
+
+    @Override
     protected void ok() {
         try {
             LibraryFacade.getService().createBook(title.getText(), author.getText());
@@ -51,7 +52,8 @@ public class CreateBookDialog extends AbstractLibDialog {
             MyAlert.error(ex.toString());
         }
     }
-    
+
+    @Override
     public void validate() {
         boolean error = false;
         getDialogPane().lookupButton(ButtonType.OK).setDisable(false);
@@ -60,14 +62,14 @@ public class CreateBookDialog extends AbstractLibDialog {
             error = true;
         }
         if (author.getText().isEmpty()) {
-             errorPanel.setError(Empty_author.createMess());
+            errorPanel.setError(Empty_author.createMess());
             error = true;
         }
         if (!error) {
             errorPanel.clearError();
         }
         getDialogPane().lookupButton(ButtonType.OK).setDisable(error);
-        
+
     }
-    
+
 }

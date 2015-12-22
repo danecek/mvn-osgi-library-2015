@@ -10,11 +10,10 @@ import java.util.Collection;
 import org.lib.business.LibraryFacade;
 import org.lib.connection.Connection;
 import org.lib.model.MyBook;
+import org.lib.protocol.BooksCollection;
 import org.lib.protocol.CreateBook;
 import org.lib.protocol.GetAllBooks;
 import org.lib.utils.LibException;
-import static org.lib.connection.Connection.instance;
-import org.lib.model.MyBookId;
 
 /**
  *
@@ -24,22 +23,23 @@ public class LibraryFacadeProxy extends LibraryFacade {
 
     @Override
     public void createBook(String title, String author) throws LibException {
-        instance.send(new CreateBook(title, author));
+        Connection.getService().send(new CreateBook(title, author));
     }
 
     @Override
     public Collection<MyBook> getAllBooks() throws LibException {
-        return instance.send(new GetAllBooks());
+        BooksCollection books = (BooksCollection) Connection.getService().send(new GetAllBooks());
+        return books.getBooks();
     }
 
     @Override
     public boolean isAvailable() {
-        return Connection.instance.isConnected();
+        return Connection.getService().isConnected();
     }
 
     @Override
     public void deleteBooks(Collection<MyBook> books) throws LibException {
-        instance.send(new DeleteBooks(books));
+        Connection.getService().send(new DeleteBooks(books));
     }
 
 }

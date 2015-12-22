@@ -45,7 +45,7 @@ public class ConnectDialog extends AbstractLibDialog {
     @Override
     protected void ok() {
         try {
-            org.lib.connection.Connection.instance.connect(InetAddress.getByName(host.getText()),
+            org.lib.connection.Connection.getService().connect(InetAddress.getByName(host.getText()),
                     Integer.parseInt(port.getText()));
             PersistentDateState.instance.dateChanged();
             ActionsState.instance.dateChanged();

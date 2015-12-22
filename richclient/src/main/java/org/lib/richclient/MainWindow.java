@@ -66,7 +66,7 @@ public class MainWindow extends Stage {
         );
         bookPanel = new BookPanel();
         VBox root = new VBox(libMenuBar, getLibToolBar(),
-                new SplitPane(bookPanel));
+                new SplitPane(bookPanel, bookPanel));
         Scene s = new Scene(root, 800, 600);
         setScene(s);
         show();

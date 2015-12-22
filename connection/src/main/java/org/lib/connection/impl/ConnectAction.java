@@ -28,7 +28,7 @@ public class ConnectAction extends AbstractLibAction {
 
     @Override
     public boolean testDisable() {
-        return org.lib.connection.Connection.instance.isConnected();
+        return org.lib.connection.Connection.getService().isConnected();
     }
 
 }

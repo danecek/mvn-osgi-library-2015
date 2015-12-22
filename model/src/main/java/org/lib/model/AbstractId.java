@@ -1,20 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.lib.model;
 
 import java.io.Serializable;
 
-/**
- *
- * @author danecek
- */
 public abstract class AbstractId<T extends AbstractId> implements Comparable<T>,
         Serializable {
 
-    private final Integer id;
+    private Integer id;
+
+    public AbstractId() {
+    }
 
     public AbstractId(Integer id) {
         this.id = id;
@@ -35,16 +29,21 @@ public abstract class AbstractId<T extends AbstractId> implements Comparable<T>,
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return getId().hashCode();
     }
 
     @Override
     public String toString() {
-        return Integer.toString(id);
+        return Integer.toString(getId());
     }
 
+    @Override
     public int compareTo(T o) {
-        return this.id - o.getId();
+        return this.getId() - o.getId();
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 }
