@@ -33,7 +33,7 @@ public class DerbyMyBookDAO implements MyBookDAO {
         try {
             getAllPS = conn.prepareStatement("SELECT * FROM BOOKS");
             createBookPS = conn.prepareStatement("INSERT INTO BOOKS VALUES(DEFAULT, ?, ?)");
-            createBookPS = conn.prepareStatement("DELETE  BOOKS VALUES(DEFAULT, ?, ?)");
+            deleteBookPS = conn.prepareStatement("DELETE FROM  BOOKS WHERE ID=?");
         } catch (SQLException ex) {
             Logger.getLogger(DerbyMyBookDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

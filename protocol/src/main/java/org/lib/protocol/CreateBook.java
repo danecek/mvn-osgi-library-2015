@@ -1,7 +1,7 @@
 package org.lib.protocol;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import org.lib.business.LibraryFacade;
+import org.lib.business.LibraryFacadeInterface;
 import org.lib.utils.LibException;
 
 @XmlRootElement
@@ -19,7 +19,7 @@ public class CreateBook extends Command {
     }
 
     @Override
-    public Object execute(LibraryFacade f) throws LibException {
+    public Object execute(LibraryFacadeInterface f) throws LibException {
         f.createBook(getTitle(), getAuthor());
         return OK;
     }

@@ -5,39 +5,47 @@
  */
 package org.lib.business;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.Collection;
+import java.util.logging.Logger;
 import org.lib.model.MyBook;
-import org.lib.model.MyBookId;
 import org.lib.utils.LibException;
 import org.osgi.util.tracker.ServiceTracker;
 
-public abstract class LibraryFacade {
+public abstract class LibraryFacade implements LibraryFacadeInterface {
 
-    private static LibraryFacade service;
+    private static LibraryFacadeInterface service;
     private static ServiceTracker<LibraryFacade, LibraryFacade> st;
 
-    public static LibraryFacade getService() {
+    public static LibraryFacadeInterface getService() {
         if (service == null) {
             service = st.getService();
             if (service == null) {
-                service = new LibraryFacadeDefault();
+                service = facadeAspectWrapper(new LibraryFacadeDefault());
             }
         }
         return service;
     }
 
-    /**
-     * @param aSt the st to set
-     */
     public static void setSt(ServiceTracker<LibraryFacade, LibraryFacade> aSt) {
         st = aSt;
     }
+    private static final Logger LOG = Logger.getLogger(LibraryFacade.class.getName());
 
-    public abstract void createBook(String title, String author) throws LibException;
+    private static LibraryFacadeInterface facadeAspectWrapper(LibraryFacadeDefault facade) {
+        return (LibraryFacadeInterface) Proxy.newProxyInstance(LibraryFacade.class.getClassLoader(),
+                new Class<?>[]{LibraryFacadeInterface.class},
+                new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                LOG.info(method.getName());
+                Method bussineMethod = facade.getClass().getMethod(method.getName(), method.getParameterTypes());
+                return bussineMethod.invoke(facade, args);
+            }
+        });
 
-    public abstract Collection<MyBook> getAllBooks() throws LibException;
+    }
 
-    public abstract boolean isAvailable();
-
-    public abstract void deleteBooks(Collection<MyBook> books) throws LibException;
 }
