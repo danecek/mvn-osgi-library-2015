@@ -24,6 +24,8 @@ public enum Messages {
     Not_connected,
     Exit,
     Books,
+    Readers,
+    Name,
     Id,
     Author,
     Title,

@@ -8,6 +8,7 @@ package org.lib.protocol;
 import java.util.Collection;
 import javax.xml.bind.annotation.XmlRootElement;
 import org.lib.business.LibraryFacade;
+import org.lib.business.LibraryFacadeInterface;
 import org.lib.model.MyBook;
 import org.lib.utils.LibException;
 
@@ -28,7 +29,7 @@ public class DeleteBooks extends Command {
     }
 
     @Override
-    public Ok execute(LibraryFacade f) throws LibException {
+    public Ok execute(LibraryFacadeInterface f) throws LibException {
         f.deleteBooks(getBooks());
         return OK;
     }
