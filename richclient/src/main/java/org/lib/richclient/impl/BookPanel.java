@@ -35,10 +35,10 @@ public class BookPanel extends TitledPane implements Observer {
     private static final Logger LOG = Logger.getLogger(BookPanel.class.getName());
 
     ObservableList<MyBook> books = FXCollections.observableArrayList();
-    private TableView<MyBook> table;
+    private final TableView<MyBook> table;
 
     private TableView<MyBook> createTable() {
-        TableView<MyBook> table = new TableView<MyBook>();
+        TableView<MyBook> table = new TableView<>();
         TableColumn<MyBook, MyBookId> idCol
                 = new TableColumn<>(Id.createMess());
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));

@@ -8,7 +8,6 @@ package org.lib.richclient;
 import org.lib.richclient.impl.BookPanel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
