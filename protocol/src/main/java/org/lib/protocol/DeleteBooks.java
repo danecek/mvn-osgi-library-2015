@@ -6,7 +6,9 @@
 package org.lib.protocol;
 
 import java.util.Collection;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.lib.business.LibraryFacade;
+import org.lib.business.LibraryFacadeInterface;
 import org.lib.model.MyBook;
 import org.lib.utils.LibException;
 
@@ -14,18 +16,36 @@ import org.lib.utils.LibException;
  *
  * @author danecek
  */
+@XmlRootElement
 public class DeleteBooks extends Command {
 
-    private final Collection<MyBook> books;
+    private Collection<MyBook> books;
+
+    public DeleteBooks() {
+    }
 
     public DeleteBooks(Collection<MyBook> books) {
         this.books = books;
     }
 
     @Override
-    public String execute(LibraryFacade f) throws LibException {
-        f.deleteBooks(books);
+    public Ok execute(LibraryFacadeInterface f) throws LibException {
+        f.deleteBooks(getBooks());
         return OK;
+    }
+
+    /**
+     * @return the books
+     */
+    public Collection<MyBook> getBooks() {
+        return books;
+    }
+
+    /**
+     * @param books the books to set
+     */
+    public void setBooks(Collection<MyBook> books) {
+        this.books = books;
     }
 
 }

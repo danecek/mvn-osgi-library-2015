@@ -24,6 +24,8 @@ public enum Messages {
     Not_connected,
     Exit,
     Books,
+    Readers,
+    Name,
     Id,
     Author,
     Title,
@@ -33,7 +35,8 @@ public enum Messages {
     Empty_author,
     Invalid_port,
     Invalid_host,
-    Error;
+    Error,
+    Files;
 
     public String createMess(Object... args) {
         try {

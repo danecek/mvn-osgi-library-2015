@@ -22,6 +22,7 @@ import org.lib.richclient.AbstractLibAction.Disable;
 public abstract class AbstractLibAction implements Observer {
 
     interface Disable {
+
         public void setDisable(boolean b);
     }
 
@@ -80,8 +81,9 @@ public abstract class AbstractLibAction implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        boolean d = testDisable();
         for (Disable item : items) {
-            item.setDisable(testDisable());
+            item.setDisable(d);
         }
     }
 

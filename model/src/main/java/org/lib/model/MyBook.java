@@ -14,10 +14,9 @@ import java.util.Objects;
  */
 public class MyBook implements Serializable {
 
-    // static final long serialVersionUID = 42L;
-    private MyBookId id;
-    private String title;
-    private String author;
+    public MyBookId id;
+    public String title;
+    public String author;
 
     public MyBook(MyBookId id, String title, String author) {
         this.id = id;

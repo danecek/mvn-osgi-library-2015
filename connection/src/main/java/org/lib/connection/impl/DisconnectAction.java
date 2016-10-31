@@ -29,7 +29,7 @@ public class DisconnectAction extends AbstractLibAction {
     @Override
     public void execute() {
         try {
-            Connection.instance.disconnect();
+            Connection.getService().disconnect();
         } catch (LibException ex) {
             MyAlert.error(ex);
         }
@@ -38,7 +38,7 @@ public class DisconnectAction extends AbstractLibAction {
 
     @Override
     public boolean testDisable() {
-        return !Connection.instance.isConnected();
+        return !Connection.getService().isConnected();
     }
 
 }

@@ -16,10 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.lib.utils.Messages;
 
-/**
- *
- * @author danecek
- */
 public abstract class AbstractLibDialog extends Dialog<ButtonType> {
 
     public static class ErrorPanel extends HBox {

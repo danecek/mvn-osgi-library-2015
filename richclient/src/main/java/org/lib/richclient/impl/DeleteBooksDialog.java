@@ -13,7 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MultipleSelectionModel;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.ScrollPane;
 import org.lib.business.LibraryFacade;
 import org.lib.model.MyBook;
 import org.lib.richclient.AbstractLibDialog;
@@ -34,13 +34,9 @@ public class DeleteBooksDialog extends AbstractLibDialog {
 
     @Override
     protected Node createContent() {
-        ListView<MyBook> lv = new ListView<>(MainWindow.instance.getBookPanel().selectedBooks());
+        ListView<MyBook> lv = new ListView<>();
+        lv.setItems(MainWindow.instance.getBookPanel().selectedBooks());
         lv.setSelectionModel(new MultipleSelectionModel<MyBook>() {
-
-            {
-                super.setSelectedIndex(-1);
-                super.setSelectedItem(null);
-            }
 
             @Override
             public ObservableList<Integer> getSelectedIndices() {
@@ -106,8 +102,7 @@ public class DeleteBooksDialog extends AbstractLibDialog {
             public void selectNext() {
             }
         });
-
-        return lv;
+        return new ScrollPane(lv);
     }
 
     @Override

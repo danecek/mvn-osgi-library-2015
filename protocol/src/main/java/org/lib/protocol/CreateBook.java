@@ -1,21 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.lib.protocol;
 
-import org.lib.business.LibraryFacade;
+import javax.xml.bind.annotation.XmlRootElement;
+import org.lib.business.LibraryFacadeInterface;
 import org.lib.utils.LibException;
 
-/**
- *
- * @author danecek
- */
+@XmlRootElement
 public class CreateBook extends Command {
 
-    private final String title;
-    private final String author;
+    private String title;
+    private String author;
+
+    public CreateBook() {
+    }
 
     public CreateBook(String title, String author) {
         this.title = title;
@@ -23,9 +19,25 @@ public class CreateBook extends Command {
     }
 
     @Override
-    public Object execute(LibraryFacade f) throws LibException {
-        f.createBook(title, author);
+    public Object execute(LibraryFacadeInterface f) throws LibException {
+        f.createBook(getTitle(), getAuthor());
         return OK;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
 }

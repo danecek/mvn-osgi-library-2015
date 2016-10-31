@@ -1,29 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.lib.protocol;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.lib.business.LibraryFacade;
-import org.lib.model.MyBook;
+import org.lib.business.LibraryFacadeInterface;
 import org.lib.utils.LibException;
 
-/**
- *
- * @author danecek
- */
+@XmlRootElement
 public class GetAllBooks extends Command {
 
-
     public GetAllBooks() {
-
     }
 
     @Override
-    public Collection<MyBook> execute(LibraryFacade f) throws LibException {
-        return f.getAllBooks();
+    public BooksCollection execute(LibraryFacadeInterface f) throws LibException {
+        return new BooksCollection(new ArrayList(f.getAllBooks()));
     }
 
 }

@@ -11,6 +11,9 @@ package org.lib.model;
  */
 public class MyBookId extends AbstractId<MyBookId> {
 
+    public MyBookId() {
+    }
+
     public MyBookId(Integer id) {
         super(id);
     }

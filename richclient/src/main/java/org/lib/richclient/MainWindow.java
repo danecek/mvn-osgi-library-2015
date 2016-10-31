@@ -20,6 +20,7 @@ import org.lib.richclient.impl.BookMenu;
 import org.lib.richclient.impl.CreateBookAction;
 import org.lib.richclient.impl.DeleteBooksAction;
 import org.lib.richclient.impl.FilesMenu;
+import org.lib.richclient.impl.ReaderPanel;
 import org.lib.utils.Messages;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -38,6 +39,7 @@ public class MainWindow extends Stage {
     private final MenuBar libMenuBar;
     private final ToolBar libToolBar;
     private final BookPanel bookPanel;
+    private final ReaderPanel readerPanel;
 
     public void stop() {
         Bundle sb = context.getBundle(0);
@@ -64,8 +66,10 @@ public class MainWindow extends Stage {
                 DeleteBooksAction.instance.genButton()
         );
         bookPanel = new BookPanel();
+        readerPanel = new ReaderPanel();
+        
         VBox root = new VBox(libMenuBar, getLibToolBar(),
-                new SplitPane(bookPanel));
+                new SplitPane(readerPanel, bookPanel));
         Scene s = new Scene(root, 800, 600);
         setScene(s);
         show();
